@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
+import useDebounce from "./utils/debounceHook";
+import Overtime from "./utils/overtimecalc"
 
 function App() {
 
@@ -9,9 +11,26 @@ function App() {
   });
 
   const [conversion, setConversion] = useState({
-    hour: 0,
-    minute: 0,
+    hourConverted: 0,
+    minuteConverted: 0,
   });
+
+  const [error, setError] = useState("");
+
+  const debouncedSearchTerm = useDebounce(overtime, 500);
+
+  useEffect(() => {
+    // document.title = "Wikipedia Searcher";
+    if (!overtime) {
+      return;
+    }
+    if (debouncedSearchTerm) {
+      
+      
+    }
+  }, [debouncedSearchTerm]);
+
+
 
   const handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
@@ -26,6 +45,8 @@ function App() {
     setOvertime({...overtime, [name]: value })
 
   };
+
+
 
   return (
 
@@ -46,8 +67,8 @@ function App() {
             placeholder="minute"
           />
           <div>
-          <span>{conversion.hour}</span>
-          <span>{conversion.minute}</span>
+          <span>{conversion.hourConverted}</span>
+          <span>{conversion.minuteConverted}</span>
           </div>
           </form>
     </div>  

@@ -1,7 +1,7 @@
 // let a = 1;
 // let b = 45;
 
-function overtime(a,b) {
+ function Overtime(a,b) {
 
     if(isNaN(a) || isNaN(b) || a < 0 || b < 0 ||  b > 60) {
         return console.log("nope!")
@@ -15,24 +15,26 @@ function overtime(a,b) {
  
     else {
         
-        c = (((a2 + b) * 1.5)/60).toString().split(".")
+        let c = (((a2 + b) * 1.5)/60).toString().split(".")
         let hours = c[0] 
         // console.log(c[1])
         let minutes = ((a2 + b) * 1.5) % 60
         // console.log(minutes)
-        minutes2 = Math.floor(minutes)
+        let minutes2 = Math.floor(minutes)
         if (minutes < 10) {
         console.log(`you worked ${hours}:0${minutes2} hours of OT`)
+        return hours, minutes2
         }
         else {
         console.log(`you worked ${hours}:${minutes2} hours of OT`)
+        return hours, minutes2
         }
-
 
 
     } 
 
 }
+export default Overtime;
 
 // overtime(a,b)
 // overtime(2, 30)
