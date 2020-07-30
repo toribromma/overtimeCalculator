@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 
 function App() {
@@ -11,24 +11,41 @@ function App() {
 
   });
 
+  const handleInputChange = event => {
+    // Getting the value and name of the input which triggered the change
+    let value = event.target.value;
+    const name = event.target.name;
+
+    // if (name === "password") {
+    //   value = value.substring(0, 15);
+    // }
+
+    // Updating the input's state
+    setOvertime({...overtime, [name]: value })
+  };
+
   return (
 
     <div className="App">
       <form className="form">
           <input
-            value={this.state.hour}
+            value={overtime.hour}
             name="hour"
-            onChange={this.handleInputChange}
+            onChange={handleInputChange}
             type="text"
             placeholder="hour"
           />
           <input
-            value={this.state.minute}
+            value={overtime.minute}
             name="minute"
-            onChange={this.handleInputChange}
+            onChange={handleInputChange}
             type="text"
             placeholder="minute"
           />
+          <div>
+          <span>{overtime.otHour}</span>
+          <span>{overtime.otMinute}</span>
+          </div>
           </form>
     </div>  
   );
