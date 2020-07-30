@@ -1,13 +1,27 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import useDebounce from "./utils/debounceHook";
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(3),
+      width: '35ch',
+    },
+  },
+  header: {
+    marginTop: 200
+  }
+}));
 
 
 function App() {
 
   const [overtime, setOvertime] = useState({
-    hour: 0,
-    minute: 0,
+    initialHour: 0,
+    initialMinute: 0,
   });
 
   const [conversion, setConversion] = useState({
@@ -15,7 +29,6 @@ function App() {
     minuteConverted: 0,
   });
 
-  const [error, setError] = useState("");
 
   const debouncedSearchTerm = useDebounce(overtime, 2000);
 
@@ -25,27 +38,33 @@ function App() {
       return;
     }
     if (debouncedSearchTerm) {
-        let a2 = overtime.hour * 60;
-        let c = (((a2 + overtime.minute) * 1.5)/60).toString().split(".")
-        let hours = c[0] 
-        // console.log(c[1])
-        let minutes = ((a2 + overtime.minute) * 1.5) % 60
-        // console.log(minutes)
-        let minutes2 = Math.floor(minutes)
 
-        if (minutes < 10) {
-          console.log(`you worked ${hours}:0${minutes2} hours of OT`)
+        let hour = parseInt(overtime.initialHour)
+        let minute = parseInt(overtime.initialMinute)
+      
+        let c = Math.floor((((hour * 60 + minute) * 1.5)/60))
+        
+        
+        console.log(hour)
+        console.log(minute)
+        console.log(c)
+
+        let d = Math.floor(((hour * 60 + minute) * 1.5) % 60)
+        console.log(d)
+
+        if (d < 10) {
+          // console.log(`you worked ${hours}:0${minutes2} hours of OT`)
           setConversion({
-            hourConverted: hours,
-            minuteConverted: minutes2
+            hourConverted: c,
+            minuteConverted: d
           })
 
           }
           else {
-          console.log(`you worked ${hours}:${minutes2} hours of OT`)
+          // console.log(`you worked ${hours}:${minutes2} hours of OT`)
           setConversion({
-            hourConverted: hours,
-            minuteConverted: minutes2
+            hourConverted: c,
+            minuteConverted: d
           })
 
           }
@@ -62,40 +81,42 @@ function App() {
     let value = event.target.value;
     const name = event.target.name;
 
-    // if (name === "password") {
-    //   value = value.substring(0, 15);
-    // }
-
     // Updating the input's state
     setOvertime({...overtime, [name]: value })
 
   };
 
-
+  const classes = useStyles();
 
   return (
 
     <div className="App">
-      <form className="form">
-          <input
-            value={overtime.hour}
-            name="hour"
+      <h1 className={classes.header}>Overtime Calculator</h1>
+      <h2>How many hours of Overtime did you complete?</h2>
+      <form className={classes.root}>
+          <TextField
+            value={overtime.initialHour}
+            name="initialHour"
             onChange={handleInputChange}
             type="text"
             placeholder="hour"
+            label="Hours"
+            id="outlined-basic" variant="outlined"
           />
-          <input
-            value={overtime.minute}
-            name="minute"
+          <TextField
+            value={overtime.initialMinute}
+            name="initialMinute"
             onChange={handleInputChange}
             type="text"
             placeholder="minute"
+            label="Minutes"
+            id="outlined-basic" variant="outlined"
           />
-          <div>
-          <span>You worked {conversion.hourConverted}</span>
-          <span> and {conversion.minuteConverted}</span>
-          </div>
           </form>
+          <h1>
+          <span>You worked {conversion.hourConverted} hours</span>
+          <span> and {conversion.minuteConverted} minutes!</span>
+          </h1>
     </div>  
   );
 }
