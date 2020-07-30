@@ -6,9 +6,11 @@ function App() {
   const [overtime, setOvertime] = useState({
     hour: 0,
     minute: 0,
-    otHour: 0,
-    otMinute: 0
+  });
 
+  const [conversion, setConversion] = useState({
+    hour: 0,
+    minute: 0,
   });
 
   const handleInputChange = event => {
@@ -22,6 +24,7 @@ function App() {
 
     // Updating the input's state
     setOvertime({...overtime, [name]: value })
+
   };
 
   return (
@@ -43,8 +46,8 @@ function App() {
             placeholder="minute"
           />
           <div>
-          <span>{overtime.otHour}</span>
-          <span>{overtime.otMinute}</span>
+          <span>{conversion.hour}</span>
+          <span>{conversion.minute}</span>
           </div>
           </form>
     </div>  
