@@ -17,7 +17,7 @@ function App() {
 
   const [error, setError] = useState("");
 
-  const debouncedSearchTerm = useDebounce(overtime, 500);
+  const debouncedSearchTerm = useDebounce(overtime, 2000);
 
   useEffect(() => {
     // document.title = "Wikipedia Searcher";
@@ -25,6 +25,23 @@ function App() {
       return;
     }
     if (debouncedSearchTerm) {
+
+        let c = (((overtime.hour + overtime.minute) * 1.5)/60).toString().split(".")
+        let hours = c[0] 
+        // console.log(c[1])
+        let minutes = ((overtime.hour + overtime.minute) * 1.5) % 60
+        // console.log(minutes)
+        let minutes2 = Math.floor(minutes)
+
+        if (minutes < 10) {
+          console.log(`you worked ${hours}:0${minutes2} hours of OT`)
+
+          }
+          else {
+          console.log(`you worked ${hours}:${minutes2} hours of OT`)
+    
+          }
+        
       
       
     }

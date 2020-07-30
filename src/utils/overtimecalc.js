@@ -1,7 +1,7 @@
 // let a = 1;
 // let b = 45;
 
- function Overtime(a,b) {
+ const Calculator = (a,b) => {
 
     if(isNaN(a) || isNaN(b) || a < 0 || b < 0 ||  b > 60) {
         return console.log("nope!")
@@ -34,7 +34,7 @@
     } 
 
 }
-export default Overtime;
+export default Calculator;
 
 // overtime(a,b)
 // overtime(2, 30)
