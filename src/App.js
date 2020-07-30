@@ -25,21 +25,29 @@ function App() {
       return;
     }
     if (debouncedSearchTerm) {
-
-        let c = (((overtime.hour + overtime.minute) * 1.5)/60).toString().split(".")
+        let a2 = overtime.hour * 60;
+        let c = (((a2 + overtime.minute) * 1.5)/60).toString().split(".")
         let hours = c[0] 
         // console.log(c[1])
-        let minutes = ((overtime.hour + overtime.minute) * 1.5) % 60
+        let minutes = ((a2 + overtime.minute) * 1.5) % 60
         // console.log(minutes)
         let minutes2 = Math.floor(minutes)
 
         if (minutes < 10) {
           console.log(`you worked ${hours}:0${minutes2} hours of OT`)
+          setConversion({
+            hourConverted: hours,
+            minuteConverted: minutes2
+          })
 
           }
           else {
           console.log(`you worked ${hours}:${minutes2} hours of OT`)
-    
+          setConversion({
+            hourConverted: hours,
+            minuteConverted: minutes2
+          })
+
           }
         
       
@@ -84,8 +92,8 @@ function App() {
             placeholder="minute"
           />
           <div>
-          <span>{conversion.hourConverted}</span>
-          <span>{conversion.minuteConverted}</span>
+          <span>You worked {conversion.hourConverted}</span>
+          <span> and {conversion.minuteConverted}</span>
           </div>
           </form>
     </div>  
