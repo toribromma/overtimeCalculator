@@ -98,7 +98,7 @@ function App() {
             value={overtime.initialHour}
             name="initialHour"
             onChange={handleInputChange}
-            type="text"
+            type="number"
             placeholder="hour"
             label="Hours"
             id="outlined-basic" variant="outlined"
@@ -107,7 +107,7 @@ function App() {
             value={overtime.initialMinute}
             name="initialMinute"
             onChange={handleInputChange}
-            type="text"
+            type="number"
             placeholder="minute"
             label="Minutes"
             id="outlined-basic" variant="outlined"
