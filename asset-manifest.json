@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/overtimeCalculator/static/css/main.97b009be.chunk.css",
+    "main.js": "/overtimeCalculator/static/js/main.c1c1c8a3.chunk.js",
+    "main.js.map": "/overtimeCalculator/static/js/main.c1c1c8a3.chunk.js.map",
+    "runtime-main.js": "/overtimeCalculator/static/js/runtime-main.a87b213c.js",
+    "runtime-main.js.map": "/overtimeCalculator/static/js/runtime-main.a87b213c.js.map",
+    "static/js/2.efd19488.chunk.js": "/overtimeCalculator/static/js/2.efd19488.chunk.js",
+    "static/js/2.efd19488.chunk.js.map": "/overtimeCalculator/static/js/2.efd19488.chunk.js.map",
+    "index.html": "/overtimeCalculator/index.html",
+    "precache-manifest.d2d53016cafe61bf2c47e098639c747b.js": "/overtimeCalculator/precache-manifest.d2d53016cafe61bf2c47e098639c747b.js",
+    "service-worker.js": "/overtimeCalculator/service-worker.js",
+    "static/css/main.97b009be.chunk.css.map": "/overtimeCalculator/static/css/main.97b009be.chunk.css.map",
+    "static/js/2.efd19488.chunk.js.LICENSE.txt": "/overtimeCalculator/static/js/2.efd19488.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a87b213c.js",
+    "static/js/2.efd19488.chunk.js",
+    "static/css/main.97b009be.chunk.css",
+    "static/js/main.c1c1c8a3.chunk.js"
+  ]
+}
