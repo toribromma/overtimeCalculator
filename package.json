@@ -1,6 +1,6 @@
 {
   "name": "overtime-calc",
-  "homepage": "http://toribromma.github.io/overtimeCalculator",
+  "homepage": "https://toribromma.github.io/overtimeCalculator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
