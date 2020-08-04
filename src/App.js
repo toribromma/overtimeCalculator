@@ -8,18 +8,23 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(3),
-      width: '35ch',
+      width: '33%',
     },
   },
   header: {
-    marginTop: 200,
+    marginTop: 5,
     marginBottom: 10,
     margin: "auto",
-    width: "66%",
     backgroundColor: "#00C9A7",
-    border: "#845EC2 solid 2px",
+    border: "#4B4453 solid 2px",
+    borderRadius: "10px",
     color: "white",
-    padding: 10
+    padding: 10,
+    width: "90%"
+  },
+  textField: {
+    backgroundColor: "#FEFEDF",
+    color: "#4B4453",
   }
 }));
 
@@ -101,26 +106,27 @@ function App() {
       <h1 className={classes.header}>Overtime Calculator</h1>
       <h2>How many hours of Overtime did you complete?</h2>
       <form className={classes.root}>
-          <TextField
+          <TextField className={classes.textField}
             value={overtime.initialHour}
             name="initialHour"
             onChange={handleInputChange}
             type="number"
             placeholder="hour"
             label="Hours"
-            id="outlined-basic" variant="outlined"
+            id="filled-basic" variant="filled"
+            color="white"
           />
-          <TextField
+          <TextField className={classes.textField}
             value={overtime.initialMinute}
             name="initialMinute"
             onChange={handleInputChange}
             type="number"
             placeholder="minute"
             label="Minutes"
-            id="outlined-basic" variant="outlined"
+            id="filled-basic" variant="filled"
           />
           </form>
-          <h1>
+          <h1 className={classes.header}>
           <span>You worked {conversion.hourConverted} hours</span>
           <span> and {conversion.minuteConverted} minutes!</span>
           </h1>
