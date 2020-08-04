@@ -12,7 +12,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   header: {
-    marginTop: 200
+    marginTop: 200,
+    marginBottom: 10,
+    margin: "auto",
+    width: "66%",
+    backgroundColor: "#00C9A7",
+    border: "#845EC2 solid 2px",
+    color: "white",
+    padding: 10
   }
 }));
 
