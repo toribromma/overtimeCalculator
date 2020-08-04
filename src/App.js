@@ -39,6 +39,7 @@ function App() {
   const [conversion, setConversion] = useState({
     hourConverted: 0,
     minuteConverted: 0,
+    value: false
   });
 
 
@@ -46,11 +47,10 @@ function App() {
 
   useEffect(() => {
     // document.title = "Wikipedia Searcher";
-    if (!overtime) {
+    if (!conversion.value) {
       return;
     }
     if (debouncedSearchTerm) {
-
         let hour = parseInt(overtime.initialHour)
         let minute = parseInt(overtime.initialMinute)
       
@@ -68,7 +68,8 @@ function App() {
           // console.log(`you worked ${hours}:0${minutes2} hours of OT`)
           setConversion({
             hourConverted: c,
-            minuteConverted: d
+            minuteConverted: d,
+            value: true
           })
 
           }
@@ -76,7 +77,8 @@ function App() {
           // console.log(`you worked ${hours}:${minutes2} hours of OT`)
           setConversion({
             hourConverted: c,
-            minuteConverted: d
+            minuteConverted: d,
+            value: true
           })
 
           }
@@ -94,7 +96,11 @@ function App() {
     const name = event.target.name;
 
     // Updating the input's state
-    setOvertime({...overtime, [name]: value })
+    setOvertime(
+      {...overtime, [name]: value})
+    
+    setConversion({...overtime, value:true})
+
 
   };
 
@@ -114,7 +120,6 @@ function App() {
             placeholder="hour"
             label="Hours"
             id="filled-basic" variant="filled"
-            color="white"
           />
           <TextField className={classes.textField}
             value={overtime.initialMinute}
@@ -126,11 +131,18 @@ function App() {
             id="filled-basic" variant="filled"
           />
           </form>
+          {conversion.value ? 
+          
           <h1 className={classes.header}>
           <span>You worked {conversion.hourConverted} hours</span>
           <span> and {conversion.minuteConverted} minutes!</span>
           </h1>
-    </div>  
+          :
+          <h1 className={classes.header}>Type some numbas!</h1>
+        }
+          
+
+    </div>
   );
 }
 
