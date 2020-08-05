@@ -32,13 +32,13 @@ const useStyles = makeStyles((theme) => ({
 function App() {
 
   const [overtime, setOvertime] = useState({
-    initialHour: 0,
-    initialMinute: 0,
+    initialHour: "",
+    initialMinute: "",
   });
 
   const [conversion, setConversion] = useState({
-    hourConverted: 0,
-    minuteConverted: 0,
+    hourConverted: null,
+    minuteConverted: null,
     value: false
   });
 
@@ -47,10 +47,12 @@ function App() {
 
   useEffect(() => {
     // document.title = "Wikipedia Searcher";
-    if (!conversion.value) {
-      return;
+    if (!conversion.value || !overtime.initialHour || !overtime.initialMinute) {
+      setConversion({...conversion, value:false})
+      return
     }
     if (debouncedSearchTerm) {
+        
         let hour = parseInt(overtime.initialHour)
         let minute = parseInt(overtime.initialMinute)
       
@@ -67,8 +69,8 @@ function App() {
         if (d < 10) {
           // console.log(`you worked ${hours}:0${minutes2} hours of OT`)
           setConversion({
-            hourConverted: c,
-            minuteConverted: d,
+            hourConverted: "You worked " + c + " hours",
+            minuteConverted: " and " + d + " minutes",
             value: true
           })
 
@@ -76,8 +78,8 @@ function App() {
           else {
           // console.log(`you worked ${hours}:${minutes2} hours of OT`)
           setConversion({
-            hourConverted: c,
-            minuteConverted: d,
+            hourConverted: "You worked " + c + " hours",
+            minuteConverted: " and " + d + " minutes",
             value: true
           })
 
@@ -99,7 +101,7 @@ function App() {
     setOvertime(
       {...overtime, [name]: value})
     
-    setConversion({...overtime, value:true})
+    setConversion({...conversion, value:true})
 
 
   };
@@ -134,8 +136,8 @@ function App() {
           {conversion.value ? 
           
           <h1 className={classes.header}>
-          <span>You worked {conversion.hourConverted} hours</span>
-          <span> and {conversion.minuteConverted} minutes!</span>
+          <span>{conversion.hourConverted}</span>
+          <span>{conversion.minuteConverted}</span>
           </h1>
           :
           <h1 className={classes.header}>Type some numbas!</h1>
